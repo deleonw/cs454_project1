@@ -39,6 +39,7 @@ def Findstring(k, d,):
     else:
         for i in reversed(parent):
             print(i)
+            # samll change
 
 def main():
     k = 26147
