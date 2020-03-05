@@ -15,28 +15,32 @@ def bfs (visited, graph, node):
 
 def String(state, q, parent, visited, subsetList, k, j):
     q = []
-    visited = [k+1]
-    visited[j] = False
+    visited[1] * k+1
     visited[k] = True
 
     q.append(k)
     while len(q) > 0: # queue is not empty could also say while True ?
         curr = q.pop(0)
         # for each symbol c in R do:
+        for ele in subsetList:
+            #   next = delta(curr,c, k); // Recall delta(q, r, k) = (10×q+r)%k.
+            next = delta(curr, ele, k)
 
-        #   next = delta(curr,c, k); // Recall delta(q, r, k) = (10×q+r)%k.
-        next = (10*curr+q) % k
-
-        # reached an accpeting state
-        if next == 0:
-            break
-        elif not visited[next]:
-            visited[next] = True
-            parent[next] = curr
-            q.insert(next, 1)
-    if next !=0:
+            # reached an accpeting state
+            if next == 0:
+                break
+            elif next not in visited:
+                visited[next] = True
+                parent[next] = curr
+                #label[next] = c
+                q.insert(next, 1)
+    if next != 0:
         print("No solution")
+    else:
+        #trace the string using parent pointers and concatenate label symbols as you trace until start state is reached.
+        # output the string.
 
 
 
-
+def delta(curr, ele, k):
+    return (10 * curr + ele) % k
