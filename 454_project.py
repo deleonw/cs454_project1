@@ -3,6 +3,7 @@ CS 454 Project 01
 """
 import itertools
 
+
 def isAccepted(p):
     # Checks if string p of size 6 is an accepted string or not
     # An accepted string is a string that contains at least one of each in {'a', 'b', 'c', 'd'}
@@ -32,11 +33,13 @@ def listOfAccepted(size, language, states, holder):
             states.clear()
             for string in holder:
                 for character in language:
-                    temp = string+character
+                    temp = string + character
                     states.append(temp)
+
                     #if n == size:
                         #count += 1
             #holder.clear()
+      
         elif n == 6:
             holder.clear()
             for i in states:
@@ -65,8 +68,8 @@ def listOfAccepted(size, language, states, holder):
                         #if n == size:
                             #count += 1
                         states.append(temp)
-                    temp = temp[0:len(temp)-1]
-            #holder.clear()
+                    temp = temp[0:len(temp) - 1]
+            # holder.clear()
         holder.clear()
 
     #print(str(states))
@@ -123,11 +126,15 @@ main()
 
 
 
+prev = [1] * 1365
+curr = [0] * 1365
 
 
-
-
-
-
-
+def possiblestring():
+    allstring = []
+    for i in range(1, 6):
+        for perm in itertools.product("abcd", repeat=i):
+            temp = ""
+            allstring.append(temp.join(perm))
+    print(allstring)
 
