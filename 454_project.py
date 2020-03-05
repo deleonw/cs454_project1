@@ -7,6 +7,8 @@ import itertools
 def isAccepted(p):
     # Checks if string p of size 6 is an accepted string or not
     # An accepted string is a string that contains at least one of each in {'a', 'b', 'c', 'd'}
+    if(len(p) <= 5):
+        return True
     foundA = foundB = foundC = foundD = False
     for i in p:
         if i == 'a':
@@ -108,33 +110,75 @@ def calcPos(string):
             position = position + 4 * pow(4, (len(toCalculate) - 1) - i)
     return position
 
-
-def main():
-    size = int(input("Size of string (Enter 0 to quit): "))
-    while size != 0:
-        language = ['a', 'b', 'c', 'd']
-        states = ['']
-        holder = []
-        answer = listOfAccepted(size, language, states, holder)
-        # prints list of accepted strings
-        print(answer)
-        # prints the number of accepted strings
-        print(len(answer))
-        size = int(input("\nSize of string (Enter 0 to quit): "))
-
-main()
-
-
-
-prev = [1] * 1365
-curr = [0] * 1365
-
-
 def possiblestring():
     allstring = []
     for i in range(1, 6):
         for perm in itertools.product("abcd", repeat=i):
             temp = ""
             allstring.append(temp.join(perm))
-    print(allstring)
+    return allstring
 
+def nextstate(string, prev, curr):
+    tempA = string + 'a'
+    tempB = string + 'b'
+    tempC = string + 'c'
+    tempD = string + 'd'
+    if (len(tempA) > 5):
+        tempA = tempA[1:]
+    if (len(tempB) > 5):
+        tempB = tempB[1:]
+    if (len(tempC) > 5):
+        tempC = tempC[1:]
+    if (len(tempD) > 5):
+        tempD = tempD[1:]
+
+    if isAccepted(tempA):
+        # curr[calcPos(tempA)]
+    if isAccepted(tempB):
+        # curr[calcPos(tempB)]
+    if isAccepted(tempA):
+        # curr[calcPos(tempC)]
+    if isAccepted(tempA):
+        # curr[calcPos(tempD)]
+
+
+def main():
+    # size = int(input("Size of string (Enter 0 to quit): "))
+    # while size != 0:
+    #     language = ['a', 'b', 'c', 'd']
+    #     states = ['']
+    #     holder = []
+    #     answer = listOfAccepted(size, language, states, holder)
+    #     # prints list of accepted strings
+    #     print(answer)
+    #     # prints the number of accepted strings
+    #     print(len(answer))
+    #     size = int(input("\nSize of string (Enter 0 to quit): "))
+
+        prev = [1] * 1365
+        curr = [0] * 1365
+
+        base4 = {}
+        possible = possiblestring()
+        for element in possible:
+            temp = calcPos(element)
+            base4[temp] = element
+
+        n = 1
+        for i in range(n):
+            for k, v in base4.items():  # go through prev list
+                nextstate(v, prev, curr)
+            # curr = prev
+
+        print(curr)
+
+main()
+
+#
+#
+# prev = [1] * 1365
+# curr = [0] * 1365
+
+
+
+# def nextstate(index, prev, curr):
