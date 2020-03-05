@@ -23,6 +23,27 @@ def isAccepted(p):
         return True
     return False
 
+def recursiveNumAccepted(size, language, states, holder):
+    # NFA SetUp
+    # Dictionary
+    #   {
+    #   State # : { 'a' : state #, 'b' : state #, 'c' : state #, 'd' : state #},
+    #   State # : { 'aa' : state #, 'ab' : state #, 'ac' : state #, 'ad' : state #},
+    #   ...
+    #
+    #   }
+    nfa = dict()
+
+    # change variable below later
+    for i in range(0, size):
+        accepted = listOfAccepted(i+1, language, states, holder)
+        temp = dict()
+        for j in range(0, len(accepted)):
+            temp[accepted[j]] = calcPos(accepted[j])
+        nfa[i] = temp
+    print(str(nfa))
+    print(len(nfa))
+
 def listOfAccepted(size, language, states, holder):
     # Iterative version of finding a list of accepted states at given SIZE
     # Returns the list of accepted string
