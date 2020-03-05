@@ -140,27 +140,33 @@ def possiblestring():
     return allstring
 
 def nextstate(string, prev, curr):
+    count = 0
     tempA = string + 'a'
     tempB = string + 'b'
     tempC = string + 'c'
     tempD = string + 'd'
-    if (len(tempA) > 5):
-        tempA = tempA[1:]
-    if (len(tempB) > 5):
-        tempB = tempB[1:]
-    if (len(tempC) > 5):
-        tempC = tempC[1:]
-    if (len(tempD) > 5):
-        tempD = tempD[1:]
 
     if isAccepted(tempA):
-        # curr[calcPos(tempA)]
+        if (len(tempA) > 5):
+            tempA = tempA[1:]
+        count += prev[calcPos(tempA)]
+
     if isAccepted(tempB):
-        # curr[calcPos(tempB)]
-    if isAccepted(tempA):
-        # curr[calcPos(tempC)]
-    if isAccepted(tempA):
-        # curr[calcPos(tempD)]
+        if (len(tempB) > 5):
+            tempB = tempB[1:]
+        count += prev[calcPos(tempB)]
+
+    if isAccepted(tempC):
+        if (len(tempC) > 5):
+            tempC = tempC[1:]
+        count += prev[calcPos(tempC)]
+
+    if isAccepted(tempD):
+        if (len(tempD) > 5):
+            tempD = tempD[1:]
+        count += prev[calcPos(tempD)]
+
+    curr[calcPos(string)] = count
 
 
 def main():
@@ -186,13 +192,13 @@ def main():
             base4[temp] = element
 
         n = 1
-        for i in range(n):
+        for i in range(7):
             for k, v in base4.items():  # go through prev list
                 nextstate(v, prev, curr)
-            # curr = prev
-
-        print(curr)
-
+            prev = curr
+            curr = [0] * 1365
+        for ele in prev:
+            print(ele)
 main()
 
 #
