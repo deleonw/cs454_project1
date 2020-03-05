@@ -13,34 +13,36 @@ def bfs (visited, graph, node):
                 q.append(neighbour)
 
 
-def String(state, q, parent, visited, subsetList, k, j):
-    q = []
-    visited[1] * k+1
-    visited[k] = True
-
-    q.append(k)
-    while len(q) > 0: # queue is not empty could also say while True ?
-        curr = q.pop(0)
-        # for each symbol c in R do:
-        for ele in subsetList:
-            #   next = delta(curr,c, k); // Recall delta(q, r, k) = (10×q+r)%k.
-            next = delta(curr, ele, k)
-
-            # reached an accpeting state
-            if next == 0:
-                break
-            elif next not in visited:
-                visited[next] = True
-                parent[next] = curr
-                #label[next] = c
-                q.insert(next, 1)
-    if next != 0:
-        print("No solution")
-    else:
-        #trace the string using parent pointers and concatenate label symbols as you trace until start state is reached.
-        # output the string.
-
-
-
 def delta(curr, ele, k):
     return (10 * curr + ele) % k
+
+def Findstring(k, d,):
+    queue = []
+    parent = []
+    label = []
+    visted = [0] * (k+1)
+    visted[k] = 1
+    queue.append(k)
+    while len(queue) > 0: # queue is not empty could also say while True ?
+        curr = queue.pop()
+        for elem in d:
+            next = delta(curr, elem, k)
+            if next == 0:
+                break
+            elif visted[next] == 0:
+                visted[next] = True
+                parent.append(curr)
+                label.append(elem)
+                queue.insert(next, 1)
+    # if next != 0:
+    #             print("No solution")
+    else:
+        for i in reversed(parent):
+            print(i)
+
+def main():
+    k = 26147
+    d = [1, 3]
+    Findstring(k, d)
+
+main()
