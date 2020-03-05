@@ -3,6 +3,7 @@ CS 454 Project 01
 """
 import itertools
 
+
 def isAccepted(p):
     foundA = foundB = foundC = foundD = False
     for i in p:
@@ -18,8 +19,9 @@ def isAccepted(p):
         return True
     return False
 
-def numOfAccepted(size, language,count, states, holder):
-    for n in range(1, size+1):
+
+def numOfAccepted(size, language, count, states, holder):
+    for n in range(1, size + 1):
         if n < 6:
             holder.clear()
             for i in states:
@@ -27,11 +29,11 @@ def numOfAccepted(size, language,count, states, holder):
             states.clear()
             for string in holder:
                 for character in language:
-                    temp = string+character
+                    temp = string + character
                     states.append(temp)
                     if n == size:
                         count += 1
-            #holder.clear()
+            # holder.clear()
         elif n == 6:
             holder.clear()
             for i in states:
@@ -60,16 +62,17 @@ def numOfAccepted(size, language,count, states, holder):
                         if n == size:
                             count += 1
                         states.append(temp)
-                    temp = temp[0:len(temp)-1]
-            #holder.clear()
+                    temp = temp[0:len(temp) - 1]
+            # holder.clear()
         holder.clear()
 
-    #print(str(states))
+    # print(str(states))
     holder.clear()
-    #print(len(states))
+    # print(len(states))
     states.clear()
-    #print(count)
+    # print(count)
     return count
+
 
 def recursiveNumAccepted(size, language, count, states, holder):
     # Recursive alternative for the function above
@@ -78,21 +81,23 @@ def recursiveNumAccepted(size, language, count, states, holder):
 
 
 def main():
-    size = int(input("Size of string (Enter 0 to quit): "))
-    while size != 0:
-        count = 0
-        language = ['a', 'b', 'c', 'd']
-        states = ['']
-        holder = []
-        answer = numOfAccepted(size, language, count, states, holder)
-        print(answer)
-        size = int(input("\nSize of string (Enter 0 to quit): "))
+    # size = int(input("Size of string (Enter 0 to quit): "))
+    # while size != 0:
+    #     count = 0
+    #     language = ['a', 'b', 'c', 'd']
+    #     states = ['']
+    #     holder = []
+    #     answer = numOfAccepted(size, language, count, states, holder)
+    #     print(answer)
+    #     size = int(input("\nSize of string (Enter 0 to quit): "))
 
-#main()
 
-def test():
+
+main()
+
+def base4():
     ins = str(input('Input: '))
-    while(ins != 'q'):
+    while (ins != 'q'):
         toCalculate = []
         position = 0
         for letter in ins:
@@ -109,12 +114,16 @@ def test():
         print(position)
         ins = str(input('Input: '))
 
-test()
+
+prev = [1] * 1365
+curr = [0] * 1365
 
 
-
-
-
-
-
+def possiblestring():
+    allstring = []
+    for i in range(1, 6):
+        for perm in itertools.product("abcd", repeat=i):
+            temp = ""
+            allstring.append(temp.join(perm))
+    print(allstring)
 
