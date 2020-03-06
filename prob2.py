@@ -1,5 +1,4 @@
-
-def bfs (visited, graph, node):
+def bfs(visited, graph, node):
     q = []
     visited.append(node)
     q.append(node)
@@ -14,22 +13,26 @@ def bfs (visited, graph, node):
 
 
 def delta(curr, ele, k):
-    return ((10 * curr) + ele) % k
+    return (10 * curr + ele) % k
+
 
 def Findstring(k, d):
-    queue = [] # initialize a queue
-    parent = [None] * (k+1)
-    label = [None] * (k+1)
-    visited = [False] * (k+1) # array of visited states, all false
+
+    queue = []  # initialize a queue
+    parent = [0] * (k + 1)
+    label = [0] * (k + 1)
+    visited = [False] * (k + 1)  # array of visited states, all false
     visited[k] = True
-    queue.append(k) # added the the last element to the queue
-    while len(queue) > 0: # queue is not empty could also say while True ?
-        curr = queue.pop(0)
+    queue.append(k)  # added the the last element to the queue
+    while len(queue) > 0:  # queue is not empty could also say while True ?
+        curr = queue[0]
+        queue.pop(0)
         for elem in d:
             next = delta(curr, elem, k)
             if next == 0:
                 break
-            elif visited[next] == False: # state is false or not visted
+            elif not visited[next]:  # state is false or not visted
+
                 visited[next] = True
                 parent[next] = curr
                 label[next] = elem
@@ -40,9 +43,20 @@ def Findstring(k, d):
     print(parent)
     print(label)
     if next != 0:
-            print("No solution")
+        print("No solution")
     else:
-        trace(parent, label)
+        trace(parent, label, k)
+
+
+# def trace(parent, label, key):
+#     length = 0
+#     tempParent = parent[0]
+#     solution = label[0]
+#     while tempParent != key:
+#         length += 1
+#         solution += label[tempParent] * 10 ** length
+#         tempParent = parent[tempParent]
+
 
 def trace(parent, label, k):
     parentValue = parent[0]
@@ -52,15 +66,12 @@ def trace(parent, label, k):
         parentValue = parent[parentValue]
     return solution
 
-def main():
-    #k = 26147
-    #d = [1, 3]
-    #Findstring(k, d)
 
-    parent = [4, 3, 1, 5, 2]
-    label = [1, 4, 3 , 5, 2]
-    k = 5
-    print(trace(parent, label, k))
+def main():
+    k = 198217
+    d = [1]
+    Findstring(k, d)
+
 
 
 main()
