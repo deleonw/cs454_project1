@@ -50,6 +50,14 @@ def Findstring(k, d):
 #         solution += label[tempParent] * 10 ** length
 #         tempParent = parent[tempParent]
 
+def trace(parent, label, k):
+    parentValue = parent[0]
+    solution = str(label[0])
+    while(parentValue != k):
+        solution += str(label[parentValue])
+        parentValue = parent[parentValue]
+    return solution
+
 
 
 def main():
