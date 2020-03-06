@@ -39,9 +39,6 @@ def Findstring(k, d):
             print("No solution")
     else:
         trace(parent, label)
-        print('No something here')
-    # for i in reversed(parent):
-    #     print(i)
 
 def trace(parent, label):
     pass
