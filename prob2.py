@@ -23,22 +23,31 @@ def Findstring(k, d):
     visited = [False] * (k + 1)  # array of visited states, all false
     visited[k] = True
     queue.append(k)  # added the the last element to the queue
-    while len(queue) > 0:  # queue is not empty could also say while True ?
+    while queue:  # queue is not empty could also say while True ?
         curr = queue[0]
         queue.pop(0)
+        done = 0
         for elem in d:
             next = delta(curr, elem, k)
             if next == 0:
+                done = 1
+                visited[next] = True
+                parent[next] = curr
+                label[next] = elem
+                queue.append(next)
                 break
             elif not visited[next]:  # state is false or not visted
                 visited[next] = True
                 parent[next] = curr
                 label[next] = elem
                 queue.append(next)
+        if done == 1:
+            break
     if next != 0:
         print("No solution")
     else:
-        trace(parent, label, k)
+        temp = trace(parent, label, k)
+        print(temp[len(temp)::-1])
 
 
 # def trace(parent, label, key):
@@ -61,9 +70,10 @@ def trace(parent, label, k):
 
 
 def main():
-    k = 198217
-    d = [1]
+    k = 26147
+    d = [1,3]
     Findstring(k, d)
+
 
 
 main()
