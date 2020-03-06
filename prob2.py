@@ -14,31 +14,37 @@ def bfs (visited, graph, node):
 
 
 def delta(curr, ele, k):
-    return (10 * curr + ele) % k
+    return ((10 * curr) + ele) % k
 
-def Findstring(k, d,):
-    queue = []
-    parent = []
-    label = []
-    visted = [0] * (k+1)
-    visted[k] = 1
-    queue.append(k)
+def Findstring(k, d):
+    queue = [] # initialize a queue
+    parent = [None] * (k+1)
+    label = [None] * (k+1)
+    visited = [0] * (k+1) # array of visited states, all false
+    visited[k] = 1
+    queue.append(k) # added the the last element to the queue
     while len(queue) > 0: # queue is not empty could also say while True ?
-        curr = queue.pop()
+        curr = queue[0]
+        queue.pop(0)
         for elem in d:
             next = delta(curr, elem, k)
             if next == 0:
                 break
-            elif visted[next] == 0:
-                visted[next] = True
-                parent.append(curr)
-                label.append(elem)
-                queue.insert(next, 1)
-    # if next != 0:
-    #             print("No solution")
+            elif visited[next] == 0: # state is false or not visted
+                visited[next] = 1
+                parent[next] = curr
+                label[next] = elem
+                queue.append(next)
+    if next != 0:
+            print("No solution")
     else:
-        for i in reversed(parent):
-            print(i)
+        trace(parent, label)
+        print('No something here')
+    # for i in reversed(parent):
+    #     print(i)
+
+def trace(parent, label):
+    pass
 
 def main():
     k = 26147
