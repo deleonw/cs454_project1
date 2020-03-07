@@ -1,3 +1,9 @@
+#   Assigment: 454 Project 1 Spring 2020
+#   Authors: Alexander Barajas-Ritchie, Wellinton something, Alondra Lona
+#   
+#
+
+
 def bfs(visited, graph, node):
     q = []
     visited.append(node)
@@ -14,7 +20,6 @@ def bfs(visited, graph, node):
 
 def delta(curr, ele, k):
     return (10 * curr + ele) % k
-
 
 def Findstring(k, d):
     queue = []  # initialize a queue
@@ -49,16 +54,6 @@ def Findstring(k, d):
         temp = trace(parent, label, k)
         print(temp[len(temp)::-1])
 
-
-# def trace(parent, label, key):
-#     length = 0
-#     tempParent = parent[0]
-#     solution = label[0]
-#     while tempParent != key:
-#         length += 1
-#         solution += label[tempParent] * 10 ** length
-#         tempParent = parent[tempParent]
-
 def trace(parent, label, k):
     parentValue = parent[0]
     solution = str(label[0])
@@ -70,10 +65,15 @@ def trace(parent, label, k):
 
 
 def main():
-    k = 26147
-    d = [1,3]
-    Findstring(k, d)
-
+    prog = True
+    while prog:
+        k = int(input("Insert a value K: "))
+        print("Enter integers in the language d ( same line ):  \n > ", end='')
+        d = list(map(int, input().split()))
+        Findstring(k, d)
+        question = input("Quit? y/n: ")
+        if question == "y":
+            prog = False
 
 
 main()
