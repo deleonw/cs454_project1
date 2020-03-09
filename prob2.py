@@ -1,5 +1,5 @@
 #   Assigment: 454 Project 1 Spring 2020
-#   Authors: Alexander Barajas-Ritchie, Wellinton something, Alondra Lona
+#   Authors: Alexander Barajas-Ritchie, Wellinton De Leon, Alondra Lona
 #   
 #
 
